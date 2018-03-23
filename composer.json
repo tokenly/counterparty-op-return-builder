@@ -1,0 +1,27 @@
+{
+    "name": "tokenly/counterparty-op-return-builder",
+    "description": "Composes counterparty and bitcoin transactions",
+    "type": "library",
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "Devon Weller",
+            "email": "devon@tokenly.com",
+            "homepage": "http://tokenly.com"
+        }
+    ],
+    "require": {
+        "php": ">=5.6.0",
+        "ext-gmp": "*",
+        "tokenly/crypto-quantity": "^2"
+    },
+    "require-dev": {
+        "phpunit/phpunit": "~4"
+    },
+    "autoload": {
+        "psr-4": {"Tokenly\\CounterpartyOpReturnBuilder\\": "src/"}
+    },
+
+    "minimum-stability": "dev",
+    "prefer-stable": true
+}
