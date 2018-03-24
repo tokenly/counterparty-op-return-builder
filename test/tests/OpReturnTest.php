@@ -20,9 +20,24 @@ class OpReturnTest extends \PHPUnit_Framework_TestCase
         $fake_txid = 'deadbeef00000000000000000000000000000000000000000000000000001111';
         $hex = $this->arc4decrypt($fake_txid, $op_return_builder->buildOpReturnForSend(100, 'SOUP', $destination, $fake_txid));
 
-        //               434e545250525459  | 02   | 000000000004fadf   | 00000002540be400  | 6474849fc9ac0f5bd6b49fe144d14db7d32e2445
-        //               prefix              type   asset                amount              public key
-        $expected_hex = '434e545250525459' . '02' . '000000000004fadf' . '00000002540be400' . '6474849fc9ac0f5bd6b49fe144d14db7d32e2445';
+        //               434e545250525459  | 02   | 000000000004fadf   | 00000002540be400   | 006474849fc9ac0f5bd6b49fe144d14db7d32e2445
+        //               prefix              type   asset                amount               public key
+        $expected_hex = '434e545250525459' . '02' . '000000000004fadf' . '00000002540be400' . '006474849fc9ac0f5bd6b49fe144d14db7d32e2445';
+        PHPUnit::assertEquals($expected_hex, $hex);
+    }
+
+    public function testComposeTestnetOpReturn()
+    {
+        $op_return_builder = new OpReturnBuilder();
+
+        $destination = 'mgFRGY1KbbRTj3dMdw7KQaapvZCy6ne2Ha';
+        $fake_txid = 'deadbeef00000000000000000000000000000000000000000000000000001111';
+        $hex = $this->arc4decrypt($fake_txid, $op_return_builder->buildOpReturnForSend(100, 'SOUP', $destination, $fake_txid));
+
+        // testnet address version is 0x6f
+        //               434e545250525459  | 02   | 000000000004fadf   | 00000002540be400   | 6f0807fcac4280213c06c4d71e943451e58f576750
+        //               prefix              type   asset                amount               public key
+        $expected_hex = '434e545250525459' . '02' . '000000000004fadf' . '00000002540be400' . '6f0807fcac4280213c06c4d71e943451e58f576750';
         PHPUnit::assertEquals($expected_hex, $hex);
     }
 
@@ -34,9 +49,9 @@ class OpReturnTest extends \PHPUnit_Framework_TestCase
         $fake_txid = 'deadbeef00000000000000000000000000000000000000000000000000001111';
         $hex = $this->arc4decrypt($fake_txid, $op_return_builder->buildOpReturnForSend(CryptoQuantity::fromSatoshis(600), 'SOUP', $destination, $fake_txid));
 
-        //               434e545250525459  | 02   | 000000000004fadf   | 0000000000000258   | 6474849fc9ac0f5bd6b49fe144d14db7d32e2445
+        //               434e545250525459  | 02   | 000000000004fadf   | 0000000000000258   | 006474849fc9ac0f5bd6b49fe144d14db7d32e2445
         //               prefix              type   asset                amount               public key
-        $expected_hex = '434e545250525459' . '02' . '000000000004fadf' . '0000000000000258' . '6474849fc9ac0f5bd6b49fe144d14db7d32e2445';
+        $expected_hex = '434e545250525459' . '02' . '000000000004fadf' . '0000000000000258' . '006474849fc9ac0f5bd6b49fe144d14db7d32e2445';
         PHPUnit::assertEquals($expected_hex, $hex);
     }
 
@@ -48,9 +63,9 @@ class OpReturnTest extends \PHPUnit_Framework_TestCase
         $fake_txid = 'deadbeef00000000000000000000000000000000000000000000000000001111';
         $hex = $this->arc4decrypt($fake_txid, $op_return_builder->buildOpReturnForSend(CryptoQuantity::fromFloat(600), 'SOUP', $destination, $fake_txid));
 
-        //               434e545250525459  | 02   | 000000000004fadf   | 0000000df8475800   | 6474849fc9ac0f5bd6b49fe144d14db7d32e2445
+        //               434e545250525459  | 02   | 000000000004fadf   | 0000000df8475800   | 006474849fc9ac0f5bd6b49fe144d14db7d32e2445
         //               prefix              type   asset                amount               public key
-        $expected_hex = '434e545250525459' . '02' . '000000000004fadf' . '0000000df8475800' . '6474849fc9ac0f5bd6b49fe144d14db7d32e2445';
+        $expected_hex = '434e545250525459' . '02' . '000000000004fadf' . '0000000df8475800' . '006474849fc9ac0f5bd6b49fe144d14db7d32e2445';
         PHPUnit::assertEquals($expected_hex, $hex);
     }
 
@@ -62,9 +77,9 @@ class OpReturnTest extends \PHPUnit_Framework_TestCase
         $fake_txid = 'deadbeef00000000000000000000000000000000000000000000000000001111';
         $hex = $this->arc4decrypt($fake_txid, $op_return_builder->buildOpReturnForSend(100, 'A768915753791388330', $destination, $fake_txid));
 
-        //               434e545250525459  | 02   | 000000000004fadf   | 00000002540be400   | 6474849fc9ac0f5bd6b49fe144d14db7d32e2445
+        //               434e545250525459  | 02   | 000000000004fadf   | 00000002540be400   | 006474849fc9ac0f5bd6b49fe144d14db7d32e2445
         //               prefix              type   asset                amount               public key
-        $expected_hex = '434e545250525459' . '02' . '0aabbccddeeffaaa' . '00000002540be400' . '6474849fc9ac0f5bd6b49fe144d14db7d32e2445';
+        $expected_hex = '434e545250525459' . '02' . '0aabbccddeeffaaa' . '00000002540be400' . '006474849fc9ac0f5bd6b49fe144d14db7d32e2445';
         PHPUnit::assertEquals($expected_hex, $hex);
     }
 

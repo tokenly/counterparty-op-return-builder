@@ -19,7 +19,7 @@ class OpReturnBuilder
     {
         $amount_hex = $this->paddedRawAmountHex($raw_amount);
         $asset_hex = $this->padHexString($this->assetNameToIDHex($asset), 8);
-        $destination_hex = substr($this->base58_decode($destination_string), 2, -8);
+        $destination_hex = substr($this->base58_decode($destination_string), 0, -8);
 
         // memo hex
         $memo_hex = '';
