@@ -2,12 +2,13 @@
 
 use Tokenly\CounterpartyOpReturnBuilder\OpReturnBuilder;
 use Tokenly\CryptoQuantity\CryptoQuantity;
-use \PHPUnit_Framework_Assert as PHPUnit;
+use \PHPUnit\Framework\Assert as PHPUnit;
+use PHPUnit\Framework\TestCase;
 
 /*
  *
  */
-class OpReturnTest extends \PHPUnit_Framework_TestCase
+class OpReturnTest extends TestCase
 {
 
     const SATOSHI = 100000000;
